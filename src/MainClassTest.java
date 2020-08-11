@@ -19,7 +19,7 @@ public class MainClassTest
         MainClass main = new MainClass();
 
         int result = main.getClassNumber();
-        int actualClassValue = 45;
-        Assert.assertTrue("Метод возвращает число меньше 45", result > actualClassValue);
+        int expectedClassValue = 45;
+        Assert.assertTrue("Метод возвращает число меньше 45", result > expectedClassValue);
     }
 }
