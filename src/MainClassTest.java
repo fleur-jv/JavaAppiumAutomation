@@ -22,4 +22,16 @@ public class MainClassTest
         int expectedClassValue = 45;
         Assert.assertTrue("Метод возвращает число меньше 45", result > expectedClassValue);
     }
+
+    @Test
+    public void testGetClassString()
+    {
+        MainClass main = new MainClass();
+
+        String result = main.getClassString();
+        String expectedSubstring = "hello";
+        String expectedSubstring2 = "Hello";
+        Assert.assertTrue("Метод не возвращает ни подстроку " + expectedSubstring + ", ни подстроку " + expectedSubstring2,
+                result.contains(expectedSubstring) || result.contains(expectedSubstring2));
+    }
 }
