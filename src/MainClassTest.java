@@ -9,8 +9,8 @@ public class MainClassTest
         MainClass main = new MainClass();
 
         int result = main.getLocalNumber();
-        int expectedClassValue = 14;
-        Assert.assertEquals("Метод возвращает не 14", expectedClassValue, result);
+        int expectedLocalValue = 14;
+        Assert.assertEquals("Метод возвращает не " + expectedLocalValue, expectedLocalValue, result);
     }
 
     @Test
