@@ -179,6 +179,36 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void checkRequestTextAtResults()
+    {
+        String request = "Java";
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Cannot find Search Wikipedia input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search…')]"),
+                request,
+                "Cannot find search input",
+                5
+        );
+
+        List<WebElement> results = waitForElementsPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@resource-id='org.wikipedia:id/page_list_item_title']"),
+                "Cannot find search results",
+                5
+        );
+
+        for (WebElement result : results) {
+            String title = result.getAttribute("text");
+            Assert.assertTrue("Result not contains request", title.contains(request));
+        }
+    }
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds)
     {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
