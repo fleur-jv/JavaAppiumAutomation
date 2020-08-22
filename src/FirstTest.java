@@ -133,6 +133,16 @@ public class FirstTest {
         );
     }
 
+    @Test
+    public void checkInputContainsText()
+    {
+        assertElementHasText(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Search Wikipedia",
+                "We see unexpected text in search input"
+        );
+    }
+
     private WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds)
     {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
@@ -175,5 +185,12 @@ public class FirstTest {
         WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
         element.clear();
         return element;
+    }
+
+    private void assertElementHasText(By by, String expected_text, String error_message)
+    {
+        WebElement element = waitForElementPresent(by, "Cannot find " + expected_text + " element");
+        String actual_text = element.getAttribute("text");
+        Assert.assertEquals(error_message, expected_text, actual_text);
     }
 }
